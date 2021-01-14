@@ -1,3 +1,4 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
     id 'application'
@@ -7,6 +8,17 @@ plugins {
 
 sourceCompatibility=15
 targetCompatibility=15
+
+def currentOS = DefaultNativePlatform.currentOperatingSystem;
+def platform = ''
+
+if (currentOS.isWindows()) {
+     platform = 'win'
+} else if (currentOS.isLinux()) {
+     platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+     platform = 'mac'
+}
 
 application {
     mainModule = 'io.github.bibinsyamnath.javafxiconbrowser'
@@ -32,5 +44,7 @@ repositories {
 }
 
 dependencies {
-    
+    implementation "org.openjfx:javafx-base:15.0.1:${platform}"
+    implementation "org.openjfx:javafx-controls:15.0.1:${platform}"
+    implementation "org.openjfx:javafx-graphics:15.0.1:${platform}"
 }
