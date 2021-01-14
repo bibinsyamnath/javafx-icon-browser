@@ -8,6 +8,9 @@ description: |
   we live in tweetspace and your description wants to look good in the snap
   store.
 
+architectures:
+  - build-on: amd64
+
 grade: devel
 confinement: devmode
 
